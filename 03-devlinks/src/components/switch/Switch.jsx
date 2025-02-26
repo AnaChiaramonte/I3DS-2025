@@ -1,13 +1,14 @@
 import styles from "./Switch.module.css"
 
-const Switch = () => {
+const Switch = ({troca, isLight}) => {
   return (
-
+     <div onClick={troca} className={isLight ? styles.light : undefined}>
     <div id={styles.switch}>
       <button></button>
       <span></span>
+      </div>
     </div>
   )
 }
 
-export default Switch
+export default Switch;
