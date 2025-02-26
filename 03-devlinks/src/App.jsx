@@ -1,12 +1,15 @@
 import "./App.css";
 import Perfil from "./components/perfil/perfil";
 import Switch from "./components/switch/Switch";
-import foto from "./img/eu.png";
+import AvatarDark from "./img/eu.png";
+import AvatarLight from "./img/emojiziho.png";
 
 import Links from "./components/links/Links";
 import SocialLinks from "./components/social.links/SocialLinks";
 import Rodape from "./components/rodape/Rodape";
 import { useState } from "react";
+
+
 
 const App = () => {
   const [isLight, setIsLight] = useState(true);
@@ -16,16 +19,18 @@ const App = () => {
   }
 
   return (
+    
     <div id="App" className={isLight ? "light" : ""}>
-      <Perfil fotoPerfil={foto}>@AneLeure</Perfil>
+     <Perfil fotoPerfil={isLight ? AvatarLight : AvatarDark}>@AneLeure</Perfil>
       <Switch troca={troca} isLight={isLight} />
-
+      <div id="container">
       <ul>
         <Links link={"https://github.com/AnaChiaramonte"}>Git Hub </Links>
         <Links link={"https://Insagram.com/anaaalopeess"}>Instagram </Links>
         <Links link={"https://Youtube.com/"}>Portifólio </Links>
         <Links link={"https://linkedin.com/"}>Projetos </Links>
       </ul>
+    </div>
       <div id="socialLinks">
         <SocialLinks
           link={"https://github.com/AnaChiaramonte"}
@@ -40,6 +45,7 @@ const App = () => {
       </div>
       <Rodape>Ane Leure</Rodape>
     </div>
+    
   );
 };
 

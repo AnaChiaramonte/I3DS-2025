@@ -10,3 +10,4 @@ const Perfil = ({children, fotoPerfil}) => {
 }
 
 export default Perfil;
+
