@@ -4,7 +4,7 @@ const Footer = (props) => {
   return (
     <footer>
       <p>
-        Feito com amor por
+        Feito com ❤️ por
         <a href={props.devlinks}>{props.devName}</a>
       </p>
     </footer>
