@@ -1,4 +1,4 @@
-import styles from './SocialLinks.module.css'
+import Styles from './SocialLinks.module.css'
 
 const SocialLinks = ({link, icon}) => {
   return (

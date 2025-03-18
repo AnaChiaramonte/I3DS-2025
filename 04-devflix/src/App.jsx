@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import "./App.css";
 import Footer from "./components/footer/footer";
 import MovieCards from "./components/movieCards/MovieCards";
+import logo from "./assets/devflix.png";
+import lupa from "./assets/search.svg"
 
 const App = () => {
   const [search, setSearch] = useState("");
@@ -30,7 +32,7 @@ const hendlekeyPress = (e) => {
 }
   return (
     <div id="app">
-      <img className="logo" src={"https://placehold.co/200x200"} alt="" />
+      <img className="logo" src={logo} alt="" />
 
       <div className="search">
         <input 
@@ -38,12 +40,12 @@ const hendlekeyPress = (e) => {
         onChange={(e) => setSearch(e.target.value)}
         
         type="text" placeholder="Pesquisa por filme" />
-        <img onClick={() => searchMovies(search)} src={"https://placehold.co/20x20"} alt="" />
+        <img onClick={() => searchMovies(search)} src={lupa} alt="" />
       </div>
 {movies?.length > 0 ? (
   <div className="container">
       {movies.map((movie, index) => (
-        <MovieCards key={index} {...movie} />
+        <MovieCards key={index} apiUrl={apiUrl} {...movie} />
       ))}
       </div>
 ) : (
