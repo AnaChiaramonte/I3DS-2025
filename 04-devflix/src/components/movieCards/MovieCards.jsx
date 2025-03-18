@@ -1,10 +1,16 @@
+import { useState } from 'react';
 import MovieDescription from '../../movieDescription/MovieDescription';
 import styles from './MovieCard.module.css';
 
-const MovieCards = ({ apiUrl, ...props }) => {
+const MovieCards = (props ) => {
+  const[isModalOpen,setIsModalOpen] = useState(false);
+
+  const toggleModal = () => {
+    setIsModalOpen(!isModalOpen);
+  }
   return (
     <>
-    <div className={styles.movie}>
+    <div className={styles.movie} onClick={toggleModal}>
      <div>
     <p>{props.Year}</p>
   </div>
@@ -16,7 +22,10 @@ const MovieCards = ({ apiUrl, ...props }) => {
 <h3>{props.Title}</h3>
 </div> 
 </div>
-<MovieDescription apiUrl={apiUrl} movieID={props.imdbID}/>
+{isModalOpen &&(
+<MovieDescription apiUrl={props.apiUrl} movieID={props.imdbID} click={toggleModal}/>
+)
+}
 </>
   );
 };

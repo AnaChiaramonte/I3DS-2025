@@ -10,7 +10,8 @@ const App = () => {
   const [movies, setMovies] = useState([]);
 
   //utilizando chat de api do arquivo.env
-  const apiKey = import.meta.env.VITE_OMDB_API_KEY;
+  // const apiKey = import.meta.env.VITE_OMDB_API_KEY;
+  const apiKey= "e4d577fa";
   const apiUrl = `https://omdbapi.com/?apikey=${apiKey}`;
 
   //Alimentando com dados para não ficar nulo
