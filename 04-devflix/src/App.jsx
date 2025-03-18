@@ -3,6 +3,7 @@ import "./App.css";
 import MovieCards from "./components/movieCards/MovieCards";
 import logo from "./assets/devflix.png";
 import lupa from "./assets/search.svg";
+import Footer from "./components/footer/Footer";
 
 const App = () => {
   const [search, setSearch] = useState("");
@@ -52,6 +53,8 @@ const App = () => {
       ) : (
         <h2 className="empty">😿Filme não encontrado😿</h2>
       )}
+
+      <Footer devName={" Ana clara"} devlinks={"https://github.com"} />
     </div>
   );
 };
