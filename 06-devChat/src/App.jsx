@@ -11,7 +11,7 @@ function App() {
  const [socket, setSocket] = useState(null);
   return (
  
-    <div id="App" className='vh-100 d-flex justify-content-center align-items-center bg-dark text-light'>
+   <div id="App" className="vh-100 d-flex justify-content-center align-items-center text-light">
 {chatVisibility ? ( <Chat socket={socket}/> ) : ( <Join setSocket={setSocket} visibility={setChatVisibility}/>)}
     </div>
    

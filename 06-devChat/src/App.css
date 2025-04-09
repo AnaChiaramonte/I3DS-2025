@@ -1,6 +1,32 @@
 *{
-  
+ 
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
+
+#chat-container{
+     width: 400px;
+      height: 600px;
+}
+@keyframes bgAnimation {
+    0% {
+      background-color: rgb(20, 20, 20);
+    }
+    25% {
+      background-color: rgb(35, 35, 35);
+    }
+    50% {
+      background-color: rgb(50, 50, 50);
+    }
+    75% {
+      background-color: rgb(35, 35, 35);
+    }
+    100% {
+      background-color: rgb(20, 20, 20);
+    }
+  }
+  
+  #App {
+    animation: bgAnimation 10s infinite ease-in-out;
+  }
