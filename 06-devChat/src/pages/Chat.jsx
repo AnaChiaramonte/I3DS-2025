@@ -8,20 +8,22 @@ const Chat = ({ socket, username }) => {
   const messageRef = useRef();
   const bottomRef = useRef();
 
+  
+
+
+  
+
   useEffect(() => {
     if (!socket) return;
 
     socket.onmessage = (event) => {
       try {
         const data = JSON.parse(event.data);
-        console.log("Mensagem recebida:", data);
-        console.log("Username atual:", username);
         setMessageList((prev) => [...prev, data]);
       } catch (err) {
         console.error("Erro ao receber:", err);
       }
     };
-
 
     return () => {
       socket.onmessage = null;
