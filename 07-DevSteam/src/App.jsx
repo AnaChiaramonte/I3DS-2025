@@ -1,9 +1,10 @@
 import React from 'react'
+import Header from './components/Header'
 
 const App = () => {
   return (
    <>
-   <h1>DevSteam</h1>
+ <Header />
    </>
   )
 }
