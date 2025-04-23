@@ -4,6 +4,7 @@ import Header from "./components/Header";
 import Promotion from "./components/Promotion";
 import CarrinhoOffCanvas from "./components/CarrinhoOffCanvas";
 
+
 function App() {
   const [carrinhoItem, setCarrinhoItem] = useState([]);
 
@@ -39,6 +40,16 @@ function App() {
     );
   };
 
+  const handleAddCarrinhoQuantidade = (produto, novaQuantidade) => {
+    setCarrinhoItem((itemAnterior) =>
+      itemAnterior.map((item) =>
+        item.id === produto.id
+          ? { ...item, quantidade: novaQuantidade > 0 ? novaQuantidade : 1 }
+          : item
+      )
+    );
+  };
+
   return (
     <>
       <Header contadorJogos={carrinhoItem.length} />
@@ -48,6 +59,7 @@ function App() {
 
       <CarrinhoOffCanvas
         onRemoveCarrinho={handleRemoveCarrinho}
+        onUpdateCarrinhoQuantidade={handleAddCarrinhoQuantidade}
         carrinhoItem={carrinhoItem}
       />
     </>
