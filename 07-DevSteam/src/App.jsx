@@ -1,39 +1,57 @@
-import React from "react";
-import Header from "./components/Header";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap-icons/font/bootstrap-icons.css";
-import "bootstrap/dist/js/bootstrap.bundle.min.js";
+import { useEffect, useState } from "react";
 import "./App.css";
+import Header from "./components/Header";
 import Promotion from "./components/Promotion";
-import { useState } from "react";
+import CarrinhoOffCanvas from "./components/CarrinhoOffCanvas";
 
+function App() {
+  const [carrinhoItem, setCarrinhoItem] = useState([]);
 
+  useEffect(() => {
+    localStorage.setItem("devcarrinho", JSON.stringify(carrinhoItem));
+  }, [carrinhoItem]);
 
-function App () {
-  //quando clicar adicionar o item ao carrinho
-const [carrinhoItem, setCarrinhoItem] = useState([]);
-// mostrar o carrinho
-const [mostrarCarrinho, setMostrarCarrinho] = useState(false);
-const adicionarCarrinho = (produto) => {
-  setCarrinhoItem((produtosAnteriores)=>{
-    const existing = produtosAnteriores.find((item) => item.id === produto.id);
-    if(existing){
-      return produtosAnteriores.map((item) => {
-        if(item.id === produto.id){
-          return {...item, quantidade: item.quantidade + 1}
-        }
-        : item
-      );
-      else{
-        return [...produtosAnteriores, {...produto, quantidade: 1}];
-      });
+  useEffect(() => {
+    const salvaCarrinho = localStorage.getItem("devcarrinho");
+    salvaCarrinho && setCarrinhoItem(JSON.parse(salvaCarrinho));
+  }, []);
+
+  // console.log(localStorage.getItem("devcarrinho"));
+
+  const handleAddCarrinho = (produto) => {
+    setCarrinhoItem((itemAnterior) => {
+      const existe = itemAnterior.find((item) => item.id === produto.id);
+      if (existe) {
+        return itemAnterior.map((item) =>
+          item.id === produto.id
+            ? { ...item, quantidade: item.quantidade + 1 }
+            : item
+        );
+      } else {
+        return [...itemAnterior, { ...produto, quantidade: 1 }];
+      }
+    });
   };
+
+  const handleRemoveCarrinho = (produto) => {
+    setCarrinhoItem((itemAnterior) =>
+      itemAnterior.filter((item) => item.id !== produto.id)
+    );
+  };
+
   return (
     <>
-      <Header contadoJogos={2} />
-      <Promotion adicionarCarrinho={adicionarCarrinho} />
+      <Header contadorJogos={carrinhoItem.length} />
+      <Promotion
+        onAddCarrinho={handleAddCarrinho} //adicionando o click para promoção
+      />
+
+      <CarrinhoOffCanvas
+        onRemoveCarrinho={handleRemoveCarrinho}
+        carrinhoItem={carrinhoItem}
+      />
     </>
   );
-};
+}
 
 export default App;
